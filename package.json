@@ -1,0 +1,48 @@
+{
+  "name": "vite-plugin-debug",
+  "version": "1.0.0",
+  "description": "A plugin for vite that enable mobile debugging",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "pnpm run build --watch --ignore-watch examples",
+    "build": "tsup src/index.ts --dts --format cjs,esm",
+    "lint": "eslint src/**/*.ts",
+    "example:react": "pnpm build && cd examples/vite-react && pnpm run dev",
+    "example:vue2": "pnpm build && cd examples/vite-vue2 && pnpm run dev",
+    "example:vue3": "pnpm build && cd examples/vite-vue3 && pnpm run dev"
+  },
+  "keywords": [
+    "vite",
+    "plugin",
+    "debug",
+    "vconsole",
+    "eruda"
+  ],
+  "author": "hu3dao",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^17.0.35",
+    "@typescript-eslint/eslint-plugin": "^5.26.0",
+    "@typescript-eslint/parser": "^5.26.0",
+    "bumpp": "^7.1.1",
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.6.2",
+    "tsup": "^6.0.1",
+    "typescript": "^4.7.2",
+    "vite": "^3.1.8"
+  },
+  "files": [
+    "dist"
+  ]
+}
