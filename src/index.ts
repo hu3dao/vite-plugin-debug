@@ -38,12 +38,13 @@ export default function debug(config: IDebugConfig = {}): Plugin {
             },
             {
               tag: 'script',
-              children: `var urlSearchParams = new URLSearchParams(location.search)
-  var value = urlSearchParams.get('${enabledByKey}')
-  if(value && value === '${enabledByValue}') {
-    ${code || preset[tool]['code']}
-  }
-`,
+              children: `
+              const urlSearchParams = new URLSearchParams(location.search)
+              const value = urlSearchParams.get('${enabledByKey}')
+              if(value && value === '${enabledByValue}') {
+                ${code || preset[tool]['code']}
+              }
+              `,
               injectTo: 'body',
             },
           ],
