@@ -1,15 +1,20 @@
 # vite-plugin-debug
+
 **中文** | [English](./README.md)
+
 ## 介绍
-vite-plugin-debug是一个能够根据url的特定参数动态启用移动端调试工具的vite插件，内置了vconsole和eruda两款调试工具
-+ [vconsole地址](https://github.com/Tencent/vConsole)
-+ [eruda地址](https://github.com/liriliri/eruda)
 
-![demo1](./public/1.png)
+vite-plugin-debug 是一个能够根据 url 的特定参数动态启用移动端调试工具的 vite 插件，内置了 vconsole 和 eruda 两款调试工具
 
-![demo2](./public/2.png)
+- [vconsole 地址](https://github.com/Tencent/vConsole)
+- [eruda 地址](https://github.com/liriliri/eruda)
+
+![demo1](https://photo.zastatic.com/images/cms/banner/20221116/9614313180637697.png)
+
+![demo2](https://photo.zastatic.com/images/cms/banner/20221116/102229775584454018.png)
 
 ## 安装
+
 ```bash
 npm install vite-plugin-debug -D
 # or
@@ -17,105 +22,139 @@ yarn add vite-plugin-debug -D
 # or
 pnpm add vite-plugin-debug -D
 ```
+
 ## 配置
+
 ### enabled
-+ 说明：是否开启插件功能
-+ 类型：boolean
-+ 默认值：true
+
+- 说明：是否开启插件功能
+- 类型：boolean
+- 默认值：true
+
 ### apply
-+ 说明：在特定环境下启用插件，undefined表示在serve和build都启用
-+ 类型：'serve' | 'build' | undefined
-+ 默认值：undefined
+
+- 说明：在特定环境下启用插件，undefined 表示在 serve 和 build 都启用
+- 类型：'serve' | 'build' | undefined
+- 默认值：undefined
+
 ### tool
-+ 说明：使用哪个内置的调试工具
-+ 类型：'vconsole' | 'eruda'
-+ 默认值：vconsole
+
+- 说明：使用哪个内置的调试工具
+- 类型：'vconsole' | 'eruda'
+- 默认值：vconsole
+
 ### src
-+ 说明：调试工具的cdn地址，**传了src参数，则code参数必传**
-+ 类型：string | undefined
-+ 默认值：undefined
-+ 示例：https://cdn.bootcdn.net/ajax/libs/vConsole/3.14.7/vconsole.min.d.ts
+
+- 说明：调试工具的 cdn 地址，**传了 src 参数，则 code 参数必传**
+- 类型：string | undefined
+- 默认值：undefined
+- 示例：https://cdn.bootcdn.net/ajax/libs/vConsole/3.14.7/vconsole.min.d.ts
+
 ### code
-+ 说明：运行调试工具初始化方法的代码，**传了code参数，则src参数必传**
-+ 类型：string | undefined
-+ 默认值：undefined
-+ 示例：new window.VConsole();
+
+- 说明：运行调试工具初始化方法的代码，**传了 code 参数，则 src 参数必传**
+- 类型：string | undefined
+- 默认值：undefined
+- 示例：new window.VConsole();
+
 ### enabledByKey
-+ 说明：根据url的什么参数来动态开启调试工具
-+ 类型：string
-+ 默认值：debug,
+
+- 说明：根据 url 的什么参数来动态开启调试工具
+- 类型：string
+- 默认值：debug,
+
 ### enabledByValue
-+ 说明：判断url的 **enabledByKey** 参数对应值是否满足开启条件
-+ 类型：string
-+ 默认值：'1'
+
+- 说明：判断 url 的 **enabledByKey** 参数对应值是否满足开启条件
+- 类型：string
+- 默认值：'1'
+
 ## 用法
-+ 不带参数
+
+- 不带参数
+
 ```ts
 // vite.config.ts
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import debug from 'vite-plugin-debug'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import debug from 'vite-plugin-debug';
 
 export default defineConfig({
-  plugins: [vue(), debug()]
-})
+  plugins: [vue(), debug()],
+});
 ```
-+ 不开启
+
+- 不开启
+
 ```ts
 // vite.config.ts
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import debug from 'vite-plugin-debug'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import debug from 'vite-plugin-debug';
 
 export default defineConfig({
-  plugins: [vue(), debug({enabled: false})]
-})
+  plugins: [vue(), debug({ enabled: false })],
+});
 ```
-+ 只在serve环境下开启
+
+- 只在 serve 环境下开启
+
 ```ts
 // vite.config.ts
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import debug from 'vite-plugin-debug'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import debug from 'vite-plugin-debug';
 
 export default defineConfig({
-  plugins: [vue(), debug({apply: 'serve'})]
-})
+  plugins: [vue(), debug({ apply: 'serve' })],
+});
 ```
-+ 自定义src和code
+
+- 自定义 src 和 code
+
 ```ts
 // vite.config.ts
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import debug from 'vite-plugin-debug'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import debug from 'vite-plugin-debug';
 
 export default defineConfig({
-  plugins: [vue(), debug({src: 'https://unpkg.com/eruda@2.5.0/eruda.js', code: 'eruda.init();'})]
-})
+  plugins: [
+    vue(),
+    debug({
+      src: 'https://unpkg.com/eruda@2.5.0/eruda.js',
+      code: 'eruda.init();',
+    }),
+  ],
+});
 ```
-+ 自定义enabledByKey和enabledByValue
+
+- 自定义 enabledByKey 和 enabledByValue
+
 ```ts
 // vite.config.ts
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import debug from 'vite-plugin-debug'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import debug from 'vite-plugin-debug';
 
 export default defineConfig({
-  plugins: [vue(), debug({enabledByKey: 'open', enabledByValue: 'true'})]
-})
+  plugins: [vue(), debug({ enabledByKey: 'open', enabledByValue: 'true' })],
+});
 ```
-+ 完整演示
+
+- 完整演示
+
 ```ts
 // vite.config.ts
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import debug from 'vite-plugin-debug'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import debug from 'vite-plugin-debug';
 
 export default defineConfig({
   plugins: [
@@ -126,15 +165,16 @@ export default defineConfig({
       src: 'https://unpkg.com/eruda@2.5.0/eruda.js',
       code: 'eruda.init();',
       enabledByKey: 'open',
-      enabledByValue: 'true'
-    })
-  ]
-})
+      enabledByValue: 'true',
+    }),
+  ],
+});
 ```
 
-![demo3](./public/3.png)
+![demo3](https://photo.zastatic.com/images/cms/banner/20221116/10469491998317490.png)
 
-![demo4](./public/4.png)
+![demo4](https://photo.zastatic.com/images/cms/live/imitation/20221116/10974393864137853.png)
 
 ## License
+
 [MIT](LICENSE)

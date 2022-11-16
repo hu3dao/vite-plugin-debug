@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-debug",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A plugin for vite that enable mobile debugging",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -43,6 +43,15 @@
     "vite": "^3.1.8"
   },
   "files": [
-    "dist"
-  ]
+    "dist",
+    "README.zh-CN.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hu3dao/vite-plugin-debug"
+  },
+  "bugs": {
+    "url": "https://github.com/hu3dao/vite-plugin-debug/issues"
+  },
+  "homepage": "https://github.com/hu3dao/vite-plugin-debug/blob/master/README.md"
 }
